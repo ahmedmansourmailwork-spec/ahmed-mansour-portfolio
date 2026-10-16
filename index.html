@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" href="data:,"/>
+<title>Ahmed Mansour — Control & Automation Engineer | Maintenance Engineer</title>
+<meta name="description" content="Engineering platform of Ahmed Mansour — Control & Automation Engineer and Maintenance Engineer. Siemens PLC S7-300 / S7-400 / S7-1200 / S7-1500, WinCC SCADA/HMI, classic control, motor drives, preventive maintenance and troubleshooting. Based in Tanta, Egypt."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F1EA; --bg-2:#EAE6DA; --surface:#FFFFFF; --surface-2:#FFFEF9;
+  --ink:#0B1014; --ink-2:#2E3640; --muted:#69707A; --line:#E2DDCE; --line-strong:#0B1014;
+  --accent:#E85A1E; --accent-dark:#C74812; --teal:#0C3833; --teal-2:#0F766E; --cyan:#0891B2;
+  --soft:#FFF0E6; --soft-teal:#E6F4F1; --shadow:0 24px 60px rgba(11,16,20,.12); --shadow-sm:0 10px 30px rgba(11,16,20,.08);
+  --radius:20px; --radius-lg:28px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#070A0C; --bg-2:#0E1416; --surface:#12181B; --surface-2:#171F23;
+    --ink:#F4F1E9; --ink-2:#CBD0D6; --muted:#98A0A8; --line:#232C30; --line-strong:#F4F1E9;
+    --accent:#FF6E2E; --accent-dark:#FF6E2E; --teal:#0E2E2A; --teal-2:#2DD4BF; --cyan:#22D3EE;
+    --soft:#261A12; --soft-teal:#0F2421; --shadow:0 24px 60px rgba(0,0,0,.5); --shadow-sm:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.22;pointer-events:none;z-index:0}
+a{color:inherit} img{display:block;max-width:100%}
+.mono{font-family:"IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 86%, transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:46px;height:46px;border-radius:50%;position:relative;flex-shrink:0;background:conic-gradient(from 210deg,var(--accent) 0deg,var(--accent) 96deg,var(--ink) 96deg,var(--ink) 360deg);padding:2.5px;box-shadow:0 6px 16px rgba(11,16,20,.18);transition:transform .25s ease}
+.logo:hover .logo-mark{transform:rotate(-6deg) scale(1.05)}
+.logo-mark img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:2px solid var(--surface)}
+.logo-mark .live-dot{position:absolute;right:-1px;bottom:1px;width:11px;height:11px;border-radius:50%;background:#22C55E;border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(34,197,94,.22);z-index:2}
+.logo-text{line-height:1}.logo-text strong{font-family:"Archivo",sans-serif;font-size:16px;letter-spacing:-.02em;display:block}
+.logo-text span{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.nav-links{display:flex;gap:4px;align-items:center;background:var(--surface);border:1px solid var(--line);padding:5px;border-radius:999px}
+.nav-links a{text-decoration:none;font-size:13.5px;font-weight:700;padding:8px 13px;border-radius:999px;color:var(--ink-2);white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;padding:12px 18px;border-radius:999px;border:1px solid var(--line-strong);transition:.2s;cursor:pointer;background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 10px 24px rgba(232,90,30,.28)}
+.btn-dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn-ghost{background:var(--surface)}
+.menu-btn{display:none;background:var(--surface);border:1px solid var(--line);width:42px;height:42px;border-radius:11px;place-items:center;cursor:pointer;font-size:20px;color:var(--ink)}
+@media(max-width:920px){.nav-links{display:none;position:absolute;left:16px;right:16px;top:72px;border-radius:18px;padding:10px;flex-direction:column;align-items:stretch} .nav-links.open{display:flex} .nav-links a{padding:12px 14px} .menu-btn{display:grid} .nav-cta{display:none}}
+
+/* HERO — PLATFORM */
+.hero{padding:28px 0 0}
+.hero-shell{background:var(--surface);border:1px solid var(--line);border-radius:32px;overflow:hidden;box-shadow:var(--shadow)}
+.hero-topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--surface-2);flex-wrap:wrap}
+.hero-topbar .left{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill-live{display:inline-flex;align-items:center;gap:7px;background:#DCFCE7;color:#166534;font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px}
+@media(prefers-color-scheme:dark){.pill-live{background:#123524;color:#86EFAC}}
+.dot{width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.hero-grid{display:grid;grid-template-columns:1.07fr .93fr;gap:0}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr}}
+.hero-copy{padding:32px 30px 28px}
+@media(max-width:560px){.hero-copy{padding:24px 18px}}
+.hero h1{font-family:"Archivo",sans-serif;font-size:clamp(52px,7.2vw,88px);line-height:.88;letter-spacing:-.045em;margin:14px 0 10px;font-weight:900}
+.hero h1 em{font-style:normal;color:var(--accent)}
+/* Role switcher */
+.role-switch{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 6px}
+.role-btn{flex:1;min-width:210px;text-align:left;border:1.5px solid var(--line);background:var(--surface-2);border-radius:16px;padding:14px 16px;cursor:pointer;color:var(--ink);transition:.2s}
+.role-btn small{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.role-btn strong{font-family:"Archivo",sans-serif;font-size:16.5px;line-height:1.15;display:block;letter-spacing:-.01em}
+.role-btn.active{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.role-btn.active small{color:var(--accent)}
+.role-panel{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:12px}
+.role-panel h3{margin:0;font-family:"Archivo",sans-serif;font-size:18px;letter-spacing:-.01em}
+.role-panel p{margin:6px 0 0;color:var(--ink-2);font-size:14.5px;line-height:1.65}
+.role-panel ul{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2);line-height:1.7}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:13px;font-weight:600;background:var(--surface);border:1px solid var(--line);padding:7px 11px;border-radius:999px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--ink);color:var(--bg);border-radius:16px;padding:14px}
+.stat b{font-family:"Archivo",sans-serif;font-size:26px;line-height:1;display:block;letter-spacing:-.03em}
+.stat span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.72;font-weight:700}
+.stat.light{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.stat.light span{color:var(--muted);opacity:1}
+.hero-photo{position:relative;min-height:560px;background:#0B1014}
+@media(max-width:920px){.hero-photo{min-height:440px}}
+.hero-photo>img{width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.78) 0%, transparent 52%),linear-gradient(to bottom, rgba(0,0,0,.18), transparent 30%)}
+.widget{position:absolute;z-index:3;background:rgba(255,255,255,.94);color:#111;border-radius:14px;padding:11px 13px;box-shadow:0 14px 30px rgba(0,0,0,.22);backdrop-filter:blur(8px)}
+.widget small{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#6B7280;font-weight:700}
+.widget strong{font-family:"Archivo",sans-serif;font-size:14px;line-height:1.1}
+.widget .ok{color:#16A34A}
+.w1{top:16px;left:16px}.w2{top:16px;right:16px;text-align:right}
+@media(max-width:480px){.w2{display:none}}
+.photo-card{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;color:#fff;display:flex;justify-content:space-between;gap:12px;align-items:end}
+.photo-card strong{font-family:"Archivo",sans-serif;font-size:21px;line-height:1;display:block}
+.photo-card p{margin:4px 0 0;font-size:13px;opacity:.88;line-height:1.45}
+.badge{flex-shrink:0;background:#fff;color:#111;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:9px 11px;border-radius:999px;text-align:center;line-height:1.25}
+.platform-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+@media(max-width:820px){.platform-strip{grid-template-columns:1fr 1fr}}
+.pstrip{padding:16px 18px;border-right:1px solid var(--line)}
+.pstrip:last-child{border-right:0}
+@media(max-width:820px){.pstrip{border-bottom:1px solid var(--line)}}
+.pstrip small{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block}
+.pstrip strong{font-family:"Archivo",sans-serif;font-size:15px;display:block;margin-top:3px;line-height:1.2}
+.pstrip span{font-size:13px;color:var(--muted);line-height:1.45;display:block;margin-top:2px}
+.marquee{margin-top:22px;background:var(--ink);color:var(--bg);overflow:hidden;padding:13px 0;border-radius:999px}
+.marquee-track{display:flex;white-space:nowrap;animation:scroll 28s linear infinite;width:max-content}
+.marquee-track span{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.11em;text-transform:uppercase;padding:0 18px}
+.marquee-track i{color:var(--accent);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* SIMATIC LINEUP */
+.lineup{background:var(--ink);color:var(--bg);border-radius:30px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+@media(max-width:560px){.lineup{padding:22px 18px}}
+.lineup::before{content:"";position:absolute;right:-70px;top:-70px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,90,30,.38),transparent 65%);pointer-events:none}
+.lineup-head{display:flex;justify-content:space-between;gap:18px;align-items:end;flex-wrap:wrap;position:relative;margin-bottom:20px}
+.lineup-head h2{font-family:"Archivo",sans-serif;font-size:clamp(30px,4vw,44px);line-height:.95;letter-spacing:-.03em;margin:8px 0 0}
+.lineup-head h2 em{font-style:normal;color:var(--accent)}
+.lineup-head p{margin:0;max-width:430px;font-size:14.5px;line-height:1.65;opacity:.78}
+.plc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+@media(max-width:980px){.plc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.plc-grid{grid-template-columns:1fr}}
+.plc-card{background:color-mix(in srgb,var(--bg) 7%,transparent);border:1px solid color-mix(in srgb,var(--bg) 16%,transparent);border-radius:20px;padding:20px;transition:.25s}
+.plc-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.plc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.plc-idx{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;opacity:.55;font-weight:700}
+.plc-status{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;font-weight:700;color:#4ADE80;display:inline-flex;align-items:center;gap:6px}
+.plc-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
+.plc-model{font-family:"Archivo",sans-serif;font-size:42px;font-weight:900;letter-spacing:-.03em;line-height:1;margin:14px 0 2px}
+.plc-model span{color:var(--accent)}
+.plc-nick{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;font-weight:700}
+.plc-card p{font-size:13.5px;line-height:1.6;opacity:.86;margin:10px 0 0}
+.plc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.plc-tag{font-size:11px;font-weight:700;padding:5px 8px;border-radius:999px;background:color-mix(in srgb,var(--bg) 10%,transparent);border:1px solid color-mix(in srgb,var(--bg) 14%,transparent)}
+.cap-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;position:relative}
+@media(max-width:980px){.cap-row{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cap-row{grid-template-columns:1fr}}
+.cap{display:flex;gap:12px;align-items:center;background:var(--accent);color:#fff;border-radius:18px;padding:15px 16px}
+.cap.alt{background:color-mix(in srgb,var(--bg) 7%,transparent);border:1px solid color-mix(in srgb,var(--bg) 16%,transparent);color:var(--bg)}
+.cap .cap-ico{font-size:24px;flex-shrink:0;line-height:1}
+.cap strong{font-family:"Archivo",sans-serif;font-size:15.5px;display:block;line-height:1.15}
+.cap span{font-size:12.5px;opacity:.85;display:block;line-height:1.4;margin-top:2px}
+
+/* SECTIONS */
+section{padding:64px 0 8px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
+.sec-head h2{font-family:"Archivo",sans-serif;font-size:clamp(32px,4.2vw,46px);line-height:.95;letter-spacing:-.03em;margin:7px 0 0}
+.sec-head p{color:var(--muted);max-width:500px;margin:0;font-size:15px;line-height:1.6}
+.kicker{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;display:flex;align-items:center;gap:8px}
+.kicker::before{content:"";width:24px;height:2px;background:var(--accent);display:inline-block}
+@media(max-width:700px){.sec-head{flex-direction:column;align-items:start}}
+
+/* ROLES */
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:860px){.roles{grid-template-columns:1fr}}
+.role-card{border-radius:26px;padding:26px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.role-card.dark{background:var(--teal);color:#EFFFFB;border-color:var(--teal)}
+.role-card.lightc{background:var(--surface)}
+.role-card .rc-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.role-card .icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.dark .icon{background:rgba(255,255,255,.12)} .lightc .icon{background:var(--soft);border:1px solid var(--line)}
+.role-card h3{font-family:"Archivo",sans-serif;font-size:26px;line-height:1;letter-spacing:-.02em;margin:14px 0 8px}
+.role-card p{margin:0;line-height:1.7;font-size:15px}
+.dark p{opacity:.88}.lightc p{color:var(--ink-2)}
+.rc-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.rc-list li{display:flex;gap:9px;font-size:14px;line-height:1.55}
+.rc-list li::before{content:"▸";color:var(--accent);font-weight:900;flex-shrink:0}
+.rc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.rc-tag{font-size:12px;font-weight:700;padding:6px 9px;border-radius:999px}
+.dark .rc-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff}
+.lightc .rc-tag{background:var(--soft);border:1px solid var(--line)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+.about-img{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line);min-height:440px;position:relative}
+.about-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm)}
+.card h3{font-family:"Archivo",sans-serif;letter-spacing:-.02em;margin:0 0 10px;font-size:23px;line-height:1.1}
+.card p{color:var(--ink-2);margin:0 0 14px;line-height:1.7}
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+@media(max-width:520px){.highlights{grid-template-columns:1fr}}
+.hl{border:1px solid var(--line);border-radius:15px;padding:14px;background:var(--surface-2)}
+.hl b{font-size:14px;display:block}.hl span{font-size:13.5px;color:var(--muted);line-height:1.55;display:block;margin-top:2px}
+
+/* EXPERTISE / MODULES */
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.modules{grid-template-columns:1fr}}
+.module{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow-sm)}
+.module:hover{transform:translateY(-2px)} .module{transition:.2s}
+.module .m-head{display:flex;justify-content:space-between;align-items:center}
+.module .m-num{font-family:"IBM Plex Mono",monospace;font-weight:700;color:var(--muted);font-size:13px}
+.module .m-badge{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:5px 8px;border-radius:999px}
+.module h3{font-family:"Archivo",sans-serif;font-size:21px;margin:14px 0 8px;letter-spacing:-.02em;line-height:1.1}
+.module p{margin:0;color:var(--ink-2);font-size:14.5px;line-height:1.65}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-size:12px;font-weight:700;background:var(--soft);border:1px solid var(--line);padding:6px 9px;border-radius:999px}
+
+/* TIMELINE */
+.timeline{position:relative;margin-left:8px}
+.timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding:0 0 18px 34px}
+.tl-item::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);z-index:1}
+.tl-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;box-shadow:var(--shadow-sm)}
+@media(max-width:640px){.tl-card{grid-template-columns:1fr}}
+.tl-card h3{margin:0;font-family:"Archivo",sans-serif;font-size:17px}
+.tl-card .org{font-weight:700;color:var(--accent);font-size:13.5px;margin-top:2px}
+.tl-card p{margin:8px 0 0;color:var(--ink-2);font-size:14.5px;line-height:1.65}
+.year{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:13px;background:var(--ink);color:var(--bg);padding:6px 10px;border-radius:999px;height:fit-content;white-space:nowrap}
+
+/* PROJECTS */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filter-btn{border:1px solid var(--line);background:var(--surface);padding:9px 14px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;color:var(--ink)}
+.filter-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.projects{grid-template-columns:1fr}}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-sm)}
+.proj.hidden{display:none}
+.proj-top{display:flex;justify-content:space-between;gap:12px}
+.proj-num{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.09em;color:var(--muted);font-weight:600}
+.proj-cat{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:5px 8px;border-radius:999px;height:fit-content}
+.proj h3{font-family:"Archivo",sans-serif;font-size:22px;line-height:1.05;letter-spacing:-.02em;margin:0}
+.proj p{margin:0;color:var(--ink-2);font-size:15px;line-height:1.65;flex:1}
+.proj ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14px;line-height:1.6}
+.proj-foot{display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid var(--line);padding-top:12px}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.skills-grid{grid-template-columns:1fr}}
+.skill-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow-sm)}
+.skill-card h3{font-family:"Archivo",sans-serif;margin:0 0 4px;font-size:19px}
+.skill-card>p{margin:0 0 16px;color:var(--muted);font-size:14px}
+.bar-row{margin-bottom:13px}
+.bar-row label{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.bar-row label span{color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:11.5px;text-align:right}
+.bar{height:8px;background:var(--bg-2);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#F59E0B);border-radius:999px;width:0;transition:width 1s ease}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{font-size:12.5px;font-weight:600;border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:var(--surface-2)}
+
+/* EDU */
+.edu-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+@media(max-width:860px){.edu-grid{grid-template-columns:1fr}}
+.edu-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.edu-item:last-child{border-bottom:0;padding-bottom:0}.edu-item:first-child{padding-top:0}
+.edu-icon{width:46px;height:46px;border-radius:12px;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.edu-item h4{margin:0;font-family:"Archivo",sans-serif;font-size:16px}
+.edu-item p{margin:3px 0 0;color:var(--muted);font-size:14px;line-height:1.55}
+.grade{display:inline-block;margin-top:6px;font-size:12px;font-weight:800;background:#FEF3C7;color:#92400E;padding:4px 8px;border-radius:999px}
+@media(prefers-color-scheme:dark){.grade{background:#33270A;color:#FCD34D}}
+.course-list{display:flex;flex-wrap:wrap;gap:7px}
+.lang-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.lang-row:last-child{border:0}
+.lang-dots{display:flex;gap:5px}.lang-dots i{width:10px;height:10px;border-radius:50%;background:var(--line);display:block}.lang-dots i.on{background:var(--accent)}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:12px}
+@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}.gallery figure:first-child{grid-column:span 2}}
+.gallery figure{margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);position:relative}
+.gallery img{width:100%;height:300px;object-fit:cover;object-position:top}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.74);color:#fff;font-size:12px;font-weight:700;padding:6px 9px;border-radius:999px}
+
+/* CONTACT */
+.contact{background:var(--teal);color:#EFFFFB;border-radius:30px;padding:34px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+@media(prefers-color-scheme:dark){.contact{background:#0E2B27}}
+.contact::before{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.06)}
+.contact h2{font-family:"Archivo",sans-serif;font-size:clamp(30px,4.5vw,48px);line-height:.95;letter-spacing:-.03em;margin:8px 0 12px;max-width:640px;position:relative}
+.contact p{opacity:.88;max-width:560px;line-height:1.7;position:relative}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;position:relative}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr}}
+.contact-links{display:grid;gap:10px}
+.c-link{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 14px;text-decoration:none;color:#fff}
+.c-link:hover{background:rgba(255,255,255,.14)}
+.c-link small{display:block;opacity:.72;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.c-link strong{font-size:14.5px;word-break:break-all}
+.c-ico{width:38px;height:38px;border-radius:10px;background:#fff;color:#0C3833;display:grid;place-items:center;font-size:17px;flex-shrink:0;font-weight:800}
+.copy-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.copy-btn{background:#fff;color:#111;border:0;padding:11px 15px;border-radius:999px;font-weight:700;cursor:pointer;font-size:13.5px}
+.copy-btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+footer{padding:28px 0 36px;color:var(--muted);font-size:13.5px}
+.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}
+.reveal{opacity:1;transform:none;transition:.6s ease}
+.js .reveal{opacity:0;transform:translateY(14px)}
+.js .reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:99}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top"><span class="logo-mark"><img src="assets/avatar.jpg" alt="Ahmed Mansour"/><span class="live-dot" aria-hidden="true"></span></span><span class="logo-text"><strong>Ahmed Mansour</strong><span>Control · Maintenance</span></span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#lineup">SIMATIC</a><a href="#roles">Roles</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a class="btn btn-primary nav-cta" href="#contact">Hire Me →</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO PLATFORM -->
+  <div class="wrap hero">
+    <div class="hero-shell">
+      <div class="hero-topbar">
+        <div class="left"><span class="pill-live"><span class="dot"></span> Open to Work</span><span class="mono" style="font-size:11px;color:var(--muted)">Platform v2.0 — Portfolio OS</span></div>
+        <span class="mono" style="font-size:11px;color:var(--muted)">S7-300 · S7-400 · S7-1200 · S7-1500</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="mono" style="font-size:11px;letter-spacing:.14em;color:var(--accent);font-weight:700">AHMED MANSOUR — MECHATRONICS · HTI BENI SUEF</span>
+          <h1>AHMED<br/>MANSOUR<em>.</em></h1>
+
+          <div class="role-switch" role="tablist" aria-label="Engineering roles">
+            <button class="role-btn active" data-role="control" role="tab" aria-selected="true"><small>Role 01 — Primary</small><strong>Control &amp;<br/>Automation Engineer</strong></button>
+            <button class="role-btn" data-role="maintenance" role="tab" aria-selected="false"><small>Role 02 — Primary</small><strong>Maintenance<br/>Engineer</strong></button>
+          </div>
+
+          <div class="role-panel" id="rolePanel">
+            <h3 id="roleTitle">I program, wire &amp; commission control systems.</h3>
+            <p id="roleDesc">The full Siemens S7 family — S7-300, S7-400, S7-1200 &amp; S7-1500 — programmed in Ladder, STL &amp; SCL, with WinCC SCADA/HMI screens, analog I/O, encoders and motor drives, from panel wiring to full plant simulation.</p>
+            <ul id="roleList"><li>PLC programming &amp; hardware configuration</li><li>SCADA / HMI design in WinCC</li><li>Classic control panels &amp; VFD commissioning</li></ul>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#projects">View Projects ↓</a>
+            <a class="btn btn-ghost" href="assets/AhmedMansourCv.pdf" download>⬇ Download CV (PDF)</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/ahmed-mansour-automation" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+          <div class="hero-meta"><span class="chip">📍 Tanta, Gharbia — Egypt</span><span class="chip">🎓 B.Tech Mechatronics — 2025</span><span class="chip">⚙️ S7-300 · S7-400 · S7-1200 · S7-1500</span></div>
+          <div class="stats">
+            <div class="stat"><b data-count="5">0</b><span>Industrial Trainings</span></div>
+            <div class="stat light"><b data-count="4">0</b><span>Projects Built</span></div>
+            <div class="stat light"><b>Very Good</b><span>Cumulative Grade</span></div>
+            <div class="stat"><b>Excellent</b><span>Final Year</span></div>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/photo-1.jpg" alt="Ahmed Mansour in a black suit standing beside the Egyptian flag"/>
+          <div class="widget w1"><small>PLC System</small><strong>S7-1500 <span class="ok">● RUN</span></strong></div>
+          <div class="widget w2"><small>SCADA / HMI</small><strong>WinCC — Online</strong></div>
+          <div class="photo-card">
+            <div><strong>Tanta, Egypt</strong><p>Control &amp; automation mindset.<br/>Maintenance discipline on the floor.</p></div>
+            <span class="badge">B.Tech<br/>2025 ★</span>
+          </div>
+        </div>
+      </div>
+      <div class="platform-strip">
+        <div class="pstrip"><small>Module A</small><strong>PLC &amp; SCADA</strong><span>S7-300 · S7-400 · S7-1200 · S7-1500 · WinCC</span></div>
+        <div class="pstrip"><small>Module B</small><strong>Classic Control</strong><span>Panels, contactors, relays, timers &amp; starters</span></div>
+        <div class="pstrip"><small>Module C</small><strong>Motor Drives</strong><span>VFD install, setup &amp; commissioning</span></div>
+        <div class="pstrip"><small>Module D</small><strong>Maintenance</strong><span>Preventive, corrective &amp; troubleshooting</span></div>
+      </div>
+    </div>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marqueeTrack">
+      <span>Siemens S7-300 <i>◆</i></span><span>S7-400 <i>◆</i></span><span>S7-1200 <i>◆</i></span><span>S7-1500 <i>◆</i></span><span>WinCC SCADA / HMI <i>◆</i></span><span>Ladder · STL · SCL <i>◆</i></span><span>Motor Drives / VFD <i>◆</i></span><span>Classic Control <i>◆</i></span><span>Preventive Maintenance <i>◆</i></span><span>Troubleshooting <i>◆</i></span><span>Arduino · C++ · Python <i>◆</i></span>
+    </div></div>
+  </div>
+
+  <!-- SIMATIC LINEUP -->
+  <section id="lineup" style="padding-top:26px">
+    <div class="wrap">
+      <div class="lineup reveal">
+        <div class="lineup-head">
+          <div><div class="kicker">00 — Siemens SIMATIC Lineup</div><h2>The full S7 family.<br/><em>Hands-on.</em></h2></div>
+          <p>Not just one controller — I have worked across the complete Siemens SIMATIC S7 range, from the classic S7-300 all the way up to the flagship S7-1500, plus the drives, classic control panels and operator interfaces around them.</p>
+        </div>
+        <div class="plc-grid">
+          <article class="plc-card"><div class="plc-top"><span class="plc-idx">CPU — 01</span><span class="plc-status">HANDS-ON</span></div><div class="plc-model">S7<span>-300</span></div><div class="plc-nick">The Modular Workhorse</div><p>The classic modular PLC for manufacturing automation — programmed in Ladder, STL &amp; SCL, with analog signal handling and full hardware configuration.</p><div class="plc-tags"><span class="plc-tag">Modular</span><span class="plc-tag">STEP 7</span><span class="plc-tag">Analog I/O</span></div></article>
+          <article class="plc-card"><div class="plc-top"><span class="plc-idx">CPU — 02</span><span class="plc-status">HANDS-ON</span></div><div class="plc-model">S7<span>-400</span></div><div class="plc-nick">The Process Powerhouse</div><p>High-performance controllers for the process industry and large-scale plants — powerful CPUs built for complex, demanding automation tasks.</p><div class="plc-tags"><span class="plc-tag">Process Control</span><span class="plc-tag">Large Plants</span><span class="plc-tag">High Performance</span></div></article>
+          <article class="plc-card"><div class="plc-top"><span class="plc-idx">CPU — 03</span><span class="plc-status">HANDS-ON</span></div><div class="plc-model">S7<span>-1200</span></div><div class="plc-nick">The Compact Controller</div><p>Compact modular PLC for small-to-mid machines — integrated I/O, fast commissioning and seamless WinCC HMI integration on real projects.</p><div class="plc-tags"><span class="plc-tag">Compact</span><span class="plc-tag">TIA Portal</span><span class="plc-tag">Integrated I/O</span></div></article>
+          <article class="plc-card"><div class="plc-top"><span class="plc-idx">CPU — 04</span><span class="plc-status">HANDS-ON</span></div><div class="plc-model">S7<span>-1500</span></div><div class="plc-nick">The Advanced Flagship</div><p>Siemens' top-tier controller — maximum performance, integrated motion control and the fastest processing in the S7 family.</p><div class="plc-tags"><span class="plc-tag">Advanced</span><span class="plc-tag">Motion Control</span><span class="plc-tag">TIA Portal</span></div></article>
+        </div>
+        <div class="cap-row">
+          <div class="cap"><span class="cap-ico">⚡</span><div><strong>Motor Drives — VFD</strong><span>Installation, parameter setup &amp; commissioning</span></div></div>
+          <div class="cap alt"><span class="cap-ico">🔌</span><div><strong>Classic Control</strong><span>Contactors, relays, timers &amp; motor starters</span></div></div>
+          <div class="cap alt"><span class="cap-ico">🖥️</span><div><strong>SCADA — WinCC</strong><span>Monitoring screens &amp; full plant simulation</span></div></div>
+          <div class="cap alt"><span class="cap-ico">📟</span><div><strong>HMI</strong><span>Operator panels designed &amp; programmed</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section id="roles">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">01 — Roles · What I Do</div><h2>Two roles.<br/>One platform.</h2></div><p>This is how I work — as a Control &amp; Automation Engineer who builds and programs systems, and as a Maintenance Engineer who keeps them running reliably.</p></div>
+      <div class="roles reveal">
+        <article class="role-card dark">
+          <div class="rc-top"><span class="icon">⚙️</span><span class="mono" style="font-size:11px;opacity:.7">ROLE — 01</span></div>
+          <h3>Control &amp;<br/>Automation Engineer</h3>
+          <p>I design the logic and the panels that make machines run automatically — programming PLCs, building SCADA screens and commissioning drives so a line starts, senses, decides and acts on its own.</p>
+          <ul class="rc-list"><li>PLC programming: Siemens S7-300, S7-400, S7-1200 &amp; S7-1500 — Ladder, STL, SCL</li><li>WinCC SCADA / HMI: monitoring screens &amp; full plant simulation</li><li>Analog signals, hardware config &amp; rotary encoder integration</li><li>Classic control design &amp; panel wiring — contactors, relays, timers</li><li>Motor drive (VFD) installation &amp; commissioning</li></ul>
+          <div class="rc-tags"><span class="rc-tag">S7-300</span><span class="rc-tag">S7-400</span><span class="rc-tag">S7-1200</span><span class="rc-tag">S7-1500</span><span class="rc-tag">WinCC</span><span class="rc-tag">VFD</span><span class="rc-tag">Panel Wiring</span></div>
+        </article>
+        <article class="role-card lightc">
+          <div class="rc-top"><span class="icon">🛠️</span><span class="mono" style="font-size:11px;color:var(--muted)">ROLE — 02</span></div>
+          <h3>Maintenance<br/>Engineer</h3>
+          <p>I keep production running — finding faults fast, fixing them properly and preventing the next breakdown. Trained on live lines, pressing machines, hydraulics and power-plant systems.</p>
+          <ul class="rc-list"><li>Fault diagnosis on production lines &amp; electrical panels</li><li>Preventive maintenance for machines &amp; heavy equipment</li><li>Hydraulic systems servicing &amp; troubleshooting</li><li>Motor, drive &amp; control-panel maintenance</li><li>Downtime reduction through systematic troubleshooting</li></ul>
+          <div class="rc-tags"><span class="rc-tag">Preventive</span><span class="rc-tag">Corrective</span><span class="rc-tag">Hydraulics</span><span class="rc-tag">Troubleshooting</span><span class="rc-tag">Panels</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">02 — About</div><h2>Control engineer<br/>by training.</h2></div><p>From PLC panels to production lines — I learn systems by wiring, programming and troubleshooting them, not just reading about them.</p></div>
+      <div class="about-grid">
+        <div class="about-img reveal"><img src="assets/photo-2.jpg" alt="Ahmed Mansour seated in a library wearing a vest, shirt and tie"/></div>
+        <div class="card reveal">
+          <h3>Automation in my head, maintenance in my hands.</h3>
+          <p>I'm a Mechatronics Technology graduate from the Higher Technological Institute in Beni Suef (2021–2025). Over five industrial trainings I programmed Siemens PLCs — S7-300, S7-400, S7-1200 and S7-1500 — in Ladder, STL and SCL, built WinCC SCADA/HMI monitoring screens, wired classic control panels, integrated motor drives and encoders, and supported maintenance on live production lines.</p>
+          <p>That combination is my strength: I can build a control system and I can keep it alive under real factory conditions — reading drawings, tracing faults, and restoring operation safely and quickly. I'm now looking for a role as a Control &amp; Automation Engineer or Maintenance Engineer where I can do both.</p>
+          <div class="highlights">
+            <div class="hl"><b>🔌 PLC &amp; SCADA — Hands-on</b><span>The full S7 family — 300 / 400 / 1200 / 1500 — analog I/O, encoders, full WinCC plant simulations.</span></div>
+            <div class="hl"><b>🏭 Factory-floor experience</b><span>Production lines, pressing machines &amp; electrical panels at Linto Ceramics.</span></div>
+            <div class="hl"><b>🔧 Maintenance discipline</b><span>Preventive routines, fault tracing &amp; downtime reduction on live equipment.</span></div>
+            <div class="hl"><b>🛠️ Fix-it mentality</b><span>Hydraulics, heavy equipment &amp; power-plant systems — trained to diagnose and repair.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES / EXPERTISE -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">03 — Platform Modules</div><h2>What the platform<br/>runs on.</h2></div><p>Core technical modules built across HA Consulting Group, factories and national infrastructure sites.</p></div>
+      <div class="modules reveal">
+        <article class="module"><div class="m-head"><span class="m-num">/ MOD 01</span><span class="m-badge">Automation</span></div><h3>PLC Programming<br/>&amp; SCADA / HMI</h3><p>Programming the full Siemens S7 family — S7-300, S7-400, S7-1200 &amp; S7-1500 — in Ladder, STL and SCL. Handling analog signals, configuring hardware, programming rotary encoders and designing complete WinCC monitoring screens with full plant automation simulation.</p><div class="tags"><span class="tag">S7-300</span><span class="tag">S7-400</span><span class="tag">S7-1200</span><span class="tag">S7-1500</span><span class="tag">WinCC</span><span class="tag">SCL / STL</span></div></article>
+        <article class="module"><div class="m-head"><span class="m-num">/ MOD 02</span><span class="m-badge">Control</span></div><h3>Classic Control<br/>&amp; Motor Drives</h3><p>Designing and wiring classic control circuits — contactors, relays, timers and motor starters. Installing, commissioning and maintaining motor drive (VFD) units and machine control panels.</p><div class="tags"><span class="tag">VFDs</span><span class="tag">Contactors</span><span class="tag">Panel Wiring</span><span class="tag">Starters</span></div></article>
+        <article class="module"><div class="m-head"><span class="m-num">/ MOD 03</span><span class="m-badge">Maintenance</span></div><h3>Maintenance &amp;<br/>Troubleshooting</h3><p>Preventive and corrective maintenance on production lines, pressing machines, hydraulic systems and electrical panels — systematic fault finding that cuts downtime and keeps equipment reliable.</p><div class="tags"><span class="tag">Preventive</span><span class="tag">Hydraulics</span><span class="tag">Fault Finding</span><span class="tag">Panels</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">04 — Experience</div><h2>Training &amp;<br/>internships.</h2></div><p>Five placements from 2022 to 2026 — from power generation to advanced PLC &amp; SCADA.</p></div>
+      <div class="timeline reveal">
+        <div class="tl-item"><div class="tl-card"><div><h3>PLC Advanced &amp; SCADA / HMI</h3><div class="org">HA Consulting Group</div><p>Programmed Siemens S7-300 in SCL &amp; STL, handled analog I/O, configured hardware, integrated motor drives and rotary encoders. Designed full WinCC SCADA/HMI screens and simulated complete plant automation scenarios.</p></div><span class="year">2026</span></div></div>
+        <div class="tl-item"><div class="tl-card"><div><h3>Classic Control, PLC &amp; Motor Drives</h3><div class="org">HA Consulting Group — Al-Abbasiya</div><p>Designed and wired classic control circuits (contactors, relays, timers, starters). Programmed PLCs and installed &amp; maintained machine control systems and motor drive units.</p></div><span class="year">2025</span></div></div>
+        <div class="tl-item"><div class="tl-card"><div><h3>Production Lines &amp; Pressing Machines</h3><div class="org">Linto Ceramics Factory</div><p>Supported operation and maintenance of production lines, pressing machines and electrical panels. Troubleshot production faults to reduce downtime and improve line efficiency.</p></div><span class="year">2024</span></div></div>
+        <div class="tl-item"><div class="tl-card"><div><h3>Heavy Equipment &amp; Hydraulic Systems</h3><div class="org">Arab Contractors — Tanta</div><p>Serviced and troubleshot hydraulic systems on construction and industrial equipment. Followed preventive maintenance procedures for heavy machinery.</p></div><span class="year">2023</span></div></div>
+        <div class="tl-item"><div class="tl-card"><div><h3>Mechatronics Engineering Training</h3><div class="org">South Delta Electricity Company — Tanta</div><p>Studied electrical, automation and control systems inside power generation facilities. Applied mechatronics principles across electrical and mechanical systems in the energy sector.</p></div><span class="year">2022</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">05 — Projects</div><h2>Built, wired<br/>&amp; programmed.</h2></div><p>University and practical projects covering automation lines, robotics, CNC and 3D scanning. Use the filters to explore by type.</p></div>
+      <div class="filters reveal" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="automation">Automation</button>
+        <button class="filter-btn" data-filter="robotics">Robotics</button>
+        <button class="filter-btn" data-filter="cnc">CNC &amp; Vision</button>
+      </div>
+      <div class="projects reveal">
+        <article class="proj" data-cat="automation"><div class="proj-top"><span class="proj-num">PROJECT — 01</span><span class="proj-cat">Automation Line</span></div><h3>Automatic Filling &amp; Capping of Medical Bottles</h3><p>An automated line that fills and caps medical bottles in sequence — a complete mini production line controlled by PLC logic.</p><ul><li>Sensor-based bottle detection &amp; sequencing</li><li>Actuator control for filling and capping stations</li><li>PLC control logic for the full cycle</li></ul><div class="proj-foot"><span class="tag">PLC</span><span class="tag">Sensors</span><span class="tag">Actuators</span><span class="tag">Production Line</span></div></article>
+        <article class="proj" data-cat="robotics"><div class="proj-top"><span class="proj-num">PROJECT — 02</span><span class="proj-cat">Robotics</span></div><h3>SCARA Robot — 4-Axis Pick &amp; Place Arm</h3><p>Designed and built a 4-axis SCARA arm for pick-and-place tasks, covering the full mechatronics stack from mechanics to code.</p><ul><li>Mechanical design of the 4-axis arm</li><li>Motor control and motion programming</li><li>Pick-and-place task execution</li></ul><div class="proj-foot"><span class="tag">Robotics</span><span class="tag">Motor Control</span><span class="tag">Mechanical Design</span></div></article>
+        <article class="proj" data-cat="cnc"><div class="proj-top"><span class="proj-num">PROJECT — 03</span><span class="proj-cat">CNC</span></div><h3>CNC Automatic Tool Changer</h3><p>A tool-changing mechanism for a CNC machine that switches tools automatically during machining — reducing manual intervention and cycle time.</p><ul><li>Automatic tool selection &amp; change mechanism</li><li>Designed for in-cycle operation</li><li>Mechanical + control integration</li></ul><div class="proj-foot"><span class="tag">CNC</span><span class="tag">Mechanism Design</span><span class="tag">Automation</span></div></article>
+        <article class="proj" data-cat="cnc"><div class="proj-top"><span class="proj-num">PROJECT — 04</span><span class="proj-cat">Vision / Scanning</span></div><h3>3D Scanner</h3><p>A scanner that captures a physical object's geometry and converts it into a 3D digital model — bridging hardware sensing and digital modelling.</p><ul><li>Geometry capture of real objects</li><li>Conversion to a 3D digital model</li><li>Hardware + software integration</li></ul><div class="proj-foot"><span class="tag">3D Scanning</span><span class="tag">Sensors</span><span class="tag">Digital Modelling</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">06 — Skills</div><h2>Technical<br/>toolkit.</h2></div><p>Grouped by discipline — with the tools and platforms I have actually trained and worked on.</p></div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3>⚙️ Control &amp; Automation</h3><p>My strongest area — Siemens ecosystem, end to end.</p>
+          <div class="bar-row"><label>Siemens S7 Family — 300 · 400 · 1200 · 1500 <span>Advanced Training</span></label><div class="bar"><i data-w="90"></i></div></div>
+          <div class="bar-row"><label>WinCC SCADA / HMI <span>Plant Screens</span></label><div class="bar"><i data-w="85"></i></div></div>
+          <div class="bar-row"><label>Classic Control &amp; Panels <span>Wiring + Design</span></label><div class="bar"><i data-w="88"></i></div></div>
+          <div class="bar-row"><label>Motor Drives (VFD) <span>Install + Maintain</span></label><div class="bar"><i data-w="82"></i></div></div>
+          <div class="pills"><span class="pill">S7-400</span><span class="pill">S7-1500</span><span class="pill">Ladder</span><span class="pill">STL</span><span class="pill">SCL</span><span class="pill">Analog Signals</span><span class="pill">Rotary Encoders</span><span class="pill">Plant Simulation</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3>🛠️ Maintenance, Electronics &amp; Code</h3><p>The hands-on side — keeping machines, circuits and systems running.</p>
+          <div class="bar-row"><label>Maintenance &amp; Troubleshooting <span>Lines + Panels</span></label><div class="bar"><i data-w="84"></i></div></div>
+          <div class="bar-row"><label>Hydraulics &amp; Heavy Equipment <span>Service + Repair</span></label><div class="bar"><i data-w="76"></i></div></div>
+          <div class="bar-row"><label>Arduino &amp; Electronic Circuits <span>Practical</span></label><div class="bar"><i data-w="78"></i></div></div>
+          <div class="bar-row"><label>SolidWorks, Robotics &amp; Code <span>C++ · Python</span></label><div class="bar"><i data-w="70"></i></div></div>
+          <div class="pills"><span class="pill">Preventive Maintenance</span><span class="pill">Corrective Maintenance</span><span class="pill">Fault Diagnosis</span><span class="pill">PC Hardware Maintenance</span><span class="pill">SolidWorks</span><span class="pill">Microsoft Office</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head reveal"><div><div class="kicker">07 — Education</div><h2>Qualifications<br/>&amp; courses.</h2></div><p>Higher Technological Institute in Beni Suef — a combined diploma-to-degree pathway in Mechatronics Technology.</p></div>
+      <div class="edu-grid">
+        <div class="card reveal">
+          <div class="edu-item"><div class="edu-icon">🎓</div><div><h4>Bachelor of Technology in Mechatronics</h4><p>Higher Technological Institute in Beni Suef · 2021 — 2025</p><span class="grade">Cumulative: Very Good · Final Year: Excellent</span></div></div>
+          <div class="edu-item"><div class="edu-icon">📐</div><div><h4>Diploma in Mechatronics Technology</h4><p>Higher Technological Institute in Beni Suef · 2021 — 2023</p><p>Foundation stage of the same programme, completed on the way to the B.Tech.</p></div></div>
+          <div style="margin-top:18px;border-top:1px solid var(--line);padding-top:16px">
+            <div class="kicker" style="margin-bottom:10px">Languages</div>
+            <div class="lang-row"><strong>Arabic</strong><span style="display:flex;align-items:center;gap:10px"><small style="color:var(--muted);font-weight:700">Native</small><span class="lang-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></div>
+            <div class="lang-row"><strong>English</strong><span style="display:flex;align-items:center;gap:10px"><small style="color:var(--muted);font-weight:700">Good</small><span class="lang-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span></div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>Courses &amp; Training Programmes</h3>
+          <p>Specialist short courses alongside my degree and placements.</p>
+          <div class="course-list"><span class="pill">PLC</span><span class="pill">SCADA &amp; HMI</span><span class="pill">Motor Drives</span><span class="pill">Classic Control</span><span class="pill">SolidWorks</span><span class="pill">Arduino</span><span class="pill">Programming — C++, Python, HTML</span><span class="pill">Computer Hardware &amp; Software Maintenance</span></div>
+          <div style="margin-top:20px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:16px">
+            <strong style="font-family:'Archivo',sans-serif">🎯 Career Goal</strong>
+            <p style="margin:6px 0 0;font-size:14.5px">A Control &amp; Automation or Maintenance Engineering role where I can program and commission control systems — and keep production equipment running reliably through preventive maintenance and fast, systematic troubleshooting.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px">
+        <div class="kicker" style="margin-bottom:12px">Gallery</div>
+        <div class="gallery reveal">
+          <figure><img src="assets/photo-1.jpg" alt="Ahmed Mansour in a formal black suit next to the Egyptian flag"/><figcaption>Formal — Egypt</figcaption></figure>
+          <figure><img src="assets/photo-3.jpg" alt="Ahmed Mansour in a black suit seated in a car"/><figcaption>Ahmed Mansour</figcaption></figure>
+          <figure><img src="assets/photo-4.jpg" alt="Ahmed Mansour in a navy t-shirt and light jeans seated on a chair"/><figcaption>Off duty</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding-bottom:28px">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div class="contact-grid">
+          <div>
+            <div class="mono" style="font-size:11px;letter-spacing:.16em;opacity:.75">08 — Contact · Tanta, Egypt</div>
+            <h2>Let's build reliable systems — and keep them running.</h2>
+            <p>I'm available for Control &amp; Automation and Maintenance Engineering roles — and open to opportunities across Egypt. The fastest way to reach me is by phone, WhatsApp or email.</p>
+            <div class="copy-row"><button class="copy-btn" id="copyEmailBtn">📋 Copy Email</button><a class="copy-btn secondary" style="text-decoration:none;display:inline-block" href="assets/AhmedMansourCv.pdf" download>⬇ Download CV</a></div>
+            <p id="copyMsg" style="font-size:13px;margin-top:10px;min-height:20px"></p>
+          </div>
+          <div class="contact-links">
+            <a class="c-link" href="tel:+201032756910"><span class="c-ico">📞</span><span><small>Phone / WhatsApp</small><strong>+20 103 275 6910</strong></span></a>
+            <a class="c-link" href="mailto:ahmedmansour.mailwork@gmail.com"><span class="c-ico">✉️</span><span><small>Email</small><strong>ahmedmansour.mailwork@gmail.com</strong></span></a>
+            <a class="c-link" href="https://www.linkedin.com/in/ahmed-mansour-automation" target="_blank" rel="noopener"><span class="c-ico">in</span><span><small>LinkedIn</small><strong>linkedin.com/in/ahmed-mansour-automation</strong></span></a>
+            <a class="c-link" href="https://www.facebook.com/share/1JFTUdxLAg/" target="_blank" rel="noopener"><span class="c-ico">f</span><span><small>Facebook</small><strong>Ahmed Mansour — Facebook Profile</strong></span></a>
+            <div class="c-link" style="cursor:default"><span class="c-ico">📍</span><span><small>Location</small><strong>Tanta, Gharbia, Egypt</strong></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap footer-inner"><span>© 2026 Ahmed Mansour — Control &amp; Automation · Maintenance Engineer · Tanta, Egypt</span><span>Siemens S7-300 · S7-400 · S7-1200 · S7-1500 · WinCC SCADA/HMI · Motor Drives</span><a href="#top" style="font-weight:700;text-decoration:none">Back to top ↑</a></div></footer>
+<div class="toast" id="toast">Email copied ✓</div>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){var t=document.getElementById('marqueeTrack'); if(t) t.innerHTML+=t.innerHTML;})();
+// Role switcher
+var roleData={
+  control:{title:'I program, wire & commission control systems.',desc:'The full Siemens S7 family — S7-300, S7-400, S7-1200 & S7-1500 — in Ladder, STL & SCL, WinCC SCADA/HMI screens, analog I/O, encoders and motor drives — from panel wiring to full plant simulation.',list:['PLC programming & hardware configuration','SCADA / HMI design in WinCC','Classic control panels & VFD commissioning']},
+  maintenance:{title:'I find faults fast — and prevent the next one.',desc:'Preventive and corrective maintenance on production lines, pressing machines, hydraulic systems and electrical panels — systematic troubleshooting that cuts downtime and keeps equipment reliable.',list:['Preventive maintenance planning & execution','Fault diagnosis on lines, panels & drives','Hydraulics & heavy equipment servicing']}
+};
+var roleBtns=document.querySelectorAll('.role-btn');
+roleBtns.forEach(function(btn){btn.addEventListener('click',function(){
+  roleBtns.forEach(function(b){b.classList.remove('active'); b.setAttribute('aria-selected','false');});
+  btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+  var d=roleData[btn.dataset.role]; if(!d) return;
+  document.getElementById('roleTitle').textContent=d.title;
+  document.getElementById('roleDesc').textContent=d.desc;
+  document.getElementById('roleList').innerHTML=d.list.map(function(x){return '<li>'+x+'</li>';}).join('');
+});});
+// Mobile menu
+var menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
+menuBtn.addEventListener('click',function(){navLinks.classList.toggle('open'); menuBtn.textContent=navLinks.classList.contains('open')?'✕':'☰';});
+navLinks.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){navLinks.classList.remove('open'); menuBtn.textContent='☰';});});
+// Reveal + bars + counters
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');
+  e.target.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.dataset.w+'%';});
+  e.target.querySelectorAll('[data-count]').forEach(function(el){if(el.dataset.done)return; el.dataset.done=1; var target=+el.dataset.count, cur=0; var iv=setInterval(function(){cur++; el.textContent=cur; if(cur>=target)clearInterval(iv);},90);});
+  io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal, .stat').forEach(function(el){io.observe(el);});
+setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');}); document.querySelectorAll('[data-count]').forEach(function(el){el.textContent=el.dataset.count;}); document.querySelectorAll('.bar i').forEach(function(b){if(!b.style.width||b.style.width==='0px')b.style.width=b.dataset.w+'%';});},1600);
+document.querySelectorAll('.skill-card').forEach(function(el){io.observe(el);});
+// Project filters
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    var f=btn.dataset.filter;
+    document.querySelectorAll('.proj').forEach(function(p){ if(f==='all'||p.dataset.cat===f){p.classList.remove('hidden');}else{p.classList.add('hidden');} });
+  });
+});
+// Copy email
+function showToast(msg){var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},2200);}
+document.getElementById('copyEmailBtn').addEventListener('click',function(){
+  var email='ahmedmansour.mailwork@gmail.com';
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(email).then(function(){showToast('Email copied: '+email); document.getElementById('copyMsg').textContent='✓ Copied — ahmedmansour.mailwork@gmail.com';}).catch(function(){showToast(email);});}
+  else{showToast(email); document.getElementById('copyMsg').textContent=email;}
+});
+// Active nav
+var sections=['roles','about','experience','projects','skills','education','contact'];
+window.addEventListener('scroll',function(){
+  var y=window.scrollY+140, current='';
+  sections.forEach(function(id){var el=document.getElementById(id); if(el&&el.offsetTop<=y)current=id;});
+  navLinks.querySelectorAll('a').forEach(function(a){a.classList.toggle('active', a.getAttribute('href')==='#'+current);});
+},{passive:true});
+</script>
+</body>
+</html>
